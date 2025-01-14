@@ -33,6 +33,8 @@ with open("ocr.json", "r") as f:
 class QuestionRequest(BaseModel):
     question: str
 
+class ReadRequest(BaseModel):
+    content: str
 
 # Initialize OpenAI client
 oai = OpenAI()
@@ -122,3 +124,8 @@ async def ask_question(request: QuestionRequest):
 
     # return the answer
     return {"answer": answer}
+
+
+# ocr_read endpoint
+@app.post("/pdf_read")
+async def pdf_read(request: ReadRequest):
